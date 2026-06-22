@@ -1,0 +1,28 @@
+application:
+  name: logto
+  pods:
+  - name: app
+    image: svhd/logto:latest
+    path: /
+    servicePorts:
+    - 3001
+    vars:
+      DB_URL: "postgresql://logto:logto@postgres.pod:5432/logto"
+      ENDPOINT: "https://relaxed-weasel-logto.cloud.nexlayer.ai"
+      ADMIN_ENDPOINT: "https://relaxed-weasel-logto.cloud.nexlayer.ai"
+    volumes:
+    - name: logto-data
+      mountPath: /etc/logto
+      size: 5Gi
+  - name: postgres
+    image: postgres:16-alpine
+    servicePorts:
+    - 5432
+    vars:
+      POSTGRES_DB: logto
+      POSTGRES_USER: logto
+      POSTGRES_PASSWORD: logto
+    volumes:
+    - name: logto-db
+      mountPath: /var/lib/postgresql/data
+      size: 5Gi
