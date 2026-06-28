@@ -9,8 +9,8 @@ application:
     vars:
       DB_URL: "postgresql://logto:logto@logto-postgres-service:5432/logto"
       ENDPOINT: "https://relaxed-weasel-logto.cloud.nexlayer.ai"
-      ADMIN_ENDPOINT: "https://relaxed-weasel-logto.cloud.nexlayer.ai"
       TRUST_PROXY_HEADER: "1"
+      NO_INQUIRY: "1"
   - name: postgres
     image: postgres:16-alpine
     servicePorts:
