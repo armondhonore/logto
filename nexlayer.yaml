@@ -4,7 +4,6 @@ application:
   - name: app
     image: svhd/logto:latest
     path: /
-    command: sh -c "npm run cli db seed -- --swe || true; npm start"
     servicePorts:
     - 3001
     vars:
