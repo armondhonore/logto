@@ -2,7 +2,7 @@ application:
   name: logto
   pods:
   - name: app
-    image: svhd/logto:latest
+    image: mirror.gcr.io/svhd/logto:latest
     path: /
     command: cli db seed -- --swe
     servicePorts:
@@ -13,7 +13,7 @@ application:
       TRUST_PROXY_HEADER: "1"
       NO_INQUIRY: "1"
   - name: postgres
-    image: postgres:16-alpine
+    image: mirror.gcr.io/library/postgres:16-alpine
     servicePorts:
     - 5432
     vars:
