@@ -4,7 +4,6 @@ application:
   - name: app
     image: svhd/logto:latest
     path: /
-    command: cli db seed -- --swe
     servicePorts:
     - 3001
     vars:
