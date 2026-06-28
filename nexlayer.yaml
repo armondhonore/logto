@@ -4,16 +4,14 @@ application:
   - name: app
     image: svhd/logto:latest
     path: /
+    command: sh -c "npm run cli db seed -- --swe || true; npm start"
     servicePorts:
     - 3001
     vars:
-      DB_URL: "postgresql://logto:logto@postgres.pod:5432/logto"
+      DB_URL: "postgresql://logto:logto@logto-postgres-service:5432/logto"
       ENDPOINT: "https://relaxed-weasel-logto.cloud.nexlayer.ai"
       ADMIN_ENDPOINT: "https://relaxed-weasel-logto.cloud.nexlayer.ai"
-    volumes:
-    - name: logto-data
-      mountPath: /etc/logto
-      size: 5Gi
+      TRUST_PROXY_HEADER: "1"
   - name: postgres
     image: postgres:16-alpine
     servicePorts:
