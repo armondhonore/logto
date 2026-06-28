@@ -4,10 +4,11 @@ application:
   - name: app
     image: svhd/logto:latest
     path: /
+    command: cli db seed -- --swe
     servicePorts:
     - 3001
     vars:
-      DB_URL: "postgresql://logto:logto@logto-postgres-service:5432/logto"
+      DB_URL: "postgresql://logto:${POSTGRES_PASSWORD}@logto-postgres-service:5432/logto"
       ENDPOINT: "https://relaxed-weasel-logto.cloud.nexlayer.ai"
       TRUST_PROXY_HEADER: "1"
       NO_INQUIRY: "1"
@@ -18,7 +19,7 @@ application:
     vars:
       POSTGRES_DB: logto
       POSTGRES_USER: logto
-      POSTGRES_PASSWORD: logto
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
     - name: logto-db
       mountPath: /var/lib/postgresql/data
